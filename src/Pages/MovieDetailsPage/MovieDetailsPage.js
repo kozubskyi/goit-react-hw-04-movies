@@ -36,7 +36,7 @@ const MovieDetailsPage = ({ match, history, location }) => {
       </button>
       <div className="main-info">
         <div className="image">
-          <img src={image} alt={`Poster of ${title}`} width="320" />
+          <img src={image} alt={`Poster of ${title}`} width="300" />
         </div>
         <div className="description">
           <h1>{title}</h1>
