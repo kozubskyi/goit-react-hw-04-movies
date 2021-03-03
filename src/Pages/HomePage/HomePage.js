@@ -4,7 +4,6 @@ import './HomePage.scss';
 import { getTrendMovies } from '../../services/services';
 import MoviesList from '../../Components/MoviesList/MoviesList';
 
-//* HomePage Hook
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
 

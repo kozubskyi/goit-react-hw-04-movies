@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Route, NavLink } from 'react-router-dom';
+import { Route, NavLink, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './MovieDetailsPage.scss';
 import { getMovie } from '../../services/services';
-import routes from '../../routes';
+// import routes from '../../routes';
 import CastList from '../../Components/CastList/CastList';
 import ReviewsList from '../../Components/ReviewsList/ReviewsList';
 
@@ -23,11 +23,11 @@ const MovieDetailsPage = ({ match, history, location }) => {
       setDescription(overview);
       setScore(vote_average);
       setGenres(genres);
-      setImage(`https://image.tmdb.org/t/p/w500${poster_path || backdrop_path}`);
+      setImage((poster_path || backdrop_path) && `https://image.tmdb.org/t/p/w500${poster_path || backdrop_path}`);
     });
   }, [match]);
 
-  const handleBackButtonClick = () => history.push(location?.state?.from || routes.home);
+  const handleBackButtonClick = () => history.push(location?.state?.from);
 
   return (
     <div className="MovieDetailsPage">
@@ -59,10 +59,24 @@ const MovieDetailsPage = ({ match, history, location }) => {
         <h2 className="additional-info__title">Additional information</h2>
         <ul className="additional-info__list">
           <li className="additional-info__item">
-            <NavLink to={`${match.url}/cast`}>Cast</NavLink>
+            <NavLink
+              to={{
+                pathname: `${match.url}/cast`,
+                state: { from: location.state.from },
+              }}
+            >
+              Cast
+            </NavLink>
           </li>
           <li className="additional-info__item">
-            <NavLink to={`${match.url}/reviews`}>Reviews</NavLink>
+            <NavLink
+              to={{
+                pathname: `${match.url}/reviews`,
+                state: { from: location.state.from },
+              }}
+            >
+              Reviews
+            </NavLink>
           </li>
         </ul>
         <Route path={`${match.path}/cast`} component={CastList} />
@@ -109,4 +123,4 @@ MovieDetailsPage.propTypes = {
   }).isRequired,
 };
 
-export default MovieDetailsPage;
+export default withRouter(MovieDetailsPage);
