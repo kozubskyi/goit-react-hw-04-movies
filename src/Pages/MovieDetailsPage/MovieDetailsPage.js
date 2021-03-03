@@ -3,7 +3,7 @@ import { Route, NavLink, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './MovieDetailsPage.scss';
 import { getMovie } from '../../services/services';
-// import routes from '../../routes';
+import routes from '../../routes';
 import CastList from '../../Components/CastList/CastList';
 import ReviewsList from '../../Components/ReviewsList/ReviewsList';
 
@@ -27,7 +27,7 @@ const MovieDetailsPage = ({ match, history, location }) => {
     });
   }, [match]);
 
-  const handleBackButtonClick = () => history.push(location?.state?.from);
+  const handleBackButtonClick = () => history.push(location?.state?.from || routes.home);
 
   return (
     <div className="MovieDetailsPage">
