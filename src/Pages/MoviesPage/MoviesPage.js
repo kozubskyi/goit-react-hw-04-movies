@@ -21,13 +21,7 @@ const MoviesPage = ({ history, location }) => {
 
   const handleFormSubmit = event => {
     event.preventDefault();
-    if (query) {
-      getSeacrhedMovies(query).then(movies => {
-        // console.log('movies', movies);
-        setMovies(movies);
-      });
-      history.push({ search: `query=${query}` });
-    }
+    query && history.push({ search: `query=${query}` });
   };
 
   return (
