@@ -62,7 +62,7 @@ const MovieDetailsPage = ({ match, history, location }) => {
             <NavLink
               to={{
                 pathname: `${match.url}/cast`,
-                state: { from: location.state.from },
+                state: { from: location?.state?.from },
               }}
             >
               Cast
@@ -72,7 +72,7 @@ const MovieDetailsPage = ({ match, history, location }) => {
             <NavLink
               to={{
                 pathname: `${match.url}/reviews`,
-                state: { from: location.state.from },
+                state: { from: location?.state?.from },
               }}
             >
               Reviews
